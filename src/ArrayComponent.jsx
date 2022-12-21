@@ -30,6 +30,8 @@ const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
       if (typeof animations[i] === 'number') {
         continue;
       }
+      let compSpeed = i * speed,
+        sortSpeed = (i + 1) * speed;
       const { compare, swap } = animations[i];
 
       setTimeout(() => {
@@ -46,7 +48,7 @@ const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
           ];
           setArr([...sortedArr]);
         }
-      }, i * speed);
+      }, compSpeed);
 
       setTimeout(() => {
         bars[compare[0]].style.backgroundColor = 'white';
@@ -55,10 +57,12 @@ const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
         } else {
           bars[compare[1]].style.backgroundColor = 'white';
         }
-      }, (i + 1) * speed);
+      }, sortSpeed);
     }
     setTimeout(() => {
-      bars.forEach((bar) => (bar.style.backgroundColor = '#4CFF00'));
+      bars.forEach((bar, i) => {
+        setTimeout(() => (bar.style.backgroundColor = '#4CFF00'), i * 2);
+      });
       setIsSorting(false);
     }, (animations.length - 1) * speed);
   };
