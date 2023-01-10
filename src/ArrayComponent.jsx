@@ -103,7 +103,6 @@ const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
         >
           Bubble Sort
         </button>
-        <button className="btn">Merge Sort</button>
       </div>
     </>
   );
