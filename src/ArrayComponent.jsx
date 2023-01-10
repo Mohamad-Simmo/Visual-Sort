@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { bubbleSortAnimation } from './algorithms';
 import Bar from './Bar';
 
+const generateArray = (size) => {
+  return new Array(size).fill().map(() => Math.ceil(Math.random() * size));
+};
+
 const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
   const [arr, setArr] = useState([]);
-
-  const generateArray = (size) => {
-    return new Array(size).fill().map(() => Math.ceil(Math.random() * size));
-  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -17,7 +17,26 @@ const ArrayComponent = ({ size, isSorting, setIsSorting }) => {
     return () => clearTimeout(timeout);
   }, [size]);
 
-  const bubbleSort = (speed = 1) => {
+  const bubbleSort = () => {
+    let speed;
+
+    switch (true) {
+      case size >= 100:
+        speed = 4;
+        break;
+      case size < 100 && size > 50:
+        speed = 10;
+        break;
+      case size <= 50 && size > 40:
+        speed = 15;
+        break;
+      case size <= 40 && size > 30:
+        speed = 20;
+        break;
+      default:
+        speed = 30;
+    }
+
     setIsSorting(true);
 
     const animations = bubbleSortAnimation([...arr]);
