@@ -1,3 +1,3 @@
 # Visual Sort
 
-[Demo](https://vercel.com/mohammadsemmo/visual-sort)
+[Demo](https://visual-sort-wheat.vercel.app/)
